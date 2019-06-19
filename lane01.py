@@ -89,12 +89,13 @@ rightpoints = rightpoints+[(x2,y2) for right in good_rightlines for x1,y1,x2,y2 
 lefttop = clac_edgepoints(leftpoints,325,src.shape[0])  # 要画左右车道线的端点
 righttop = clac_edgepoints(rightpoints,325,src.shape[0])
 
-cv.line(src5,lefttop[0],lefttop[1],linecolor,linewidth)
-cv.line(src5,righttop[0],righttop[1],linecolor,linewidth)
+src6 = np.zeros_like(src5)
+
+cv.line(src6,lefttop[0],lefttop[1],linecolor,linewidth)
+cv.line(src6,righttop[0],righttop[1],linecolor,linewidth)
 
 #cv.imshow('onlylane',src5)
  
-
 
 '''这也是一种画法，能够反映出道路线的间断
 for left in good_leftlines:
@@ -109,8 +110,8 @@ cv.imshow('bianyuan',src5)
 
 
 #图像叠加
-src6 = cv.addWeighted(src1,0.8,src5,1,0)
-cv.imshow('Finally Image',src6)
+src7 = cv.addWeighted(src1,0.8,src6,1,0)
+cv.imshow('Finally Image',src7)
 
 
 cv.waitKey(0)
